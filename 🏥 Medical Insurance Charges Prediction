@@ -1,0 +1,79 @@
+# 🏥 Medical Insurance Charges Prediction
+
+A machine learning project that predicts individual medical insurance costs from age, BMI, smoking status and other factors.
+
+## Overview
+Insurance companies need to estimate how much a person's medical cost will be based on their profile. In this project, I built a regression model that predicts `charges` using the **Insurance dataset**. The project covers EDA, encoding, feature engineering, regularization (Ridge/Lasso) and cross-validation, all with Python and scikit-learn.
+
+## Dataset
+- **Source:** [Kaggle – Medical Cost Personal Datasets](https://www.kaggle.com/datasets/mirichoi0218/insurance)
+- **Size:** 1338 rows, 7 columns
+
+| Feature | Description |
+|---|---|
+| age | Age of the person |
+| sex | Gender (male/female) |
+| bmi | Body Mass Index |
+| children | Number of dependents |
+| smoker | Smoker or not (yes/no) |
+| region | Residential region in the US |
+| charges | **Target**: medical insurance cost |
+
+## Approach
+1. **EDA:** scatter plots (BMI vs charges, coloured by smoker), distributions
+2. **Preprocessing:** encoding `sex` and `smoker`, one-hot encoding `region`
+3. **Train-test split:** 80% train / 20% test (`random_state=42`)
+4. **Model:** Linear Regression (baseline)
+5. **Improvements:** scaling, Ridge and Lasso, feature engineering (`bmi × smoker`, `bmi > 30`, `age²`)
+6. **Evaluation:** R², Adjusted R², MAE, RMSE and 5-fold cross-validation
+7. **Diagnostics:** residual plot and coefficient analysis
+
+
+
+## Results
+- **Final R²:** 0.7811302113434095
+- **Adjusted R²:** 0.7769533069797342
+
+
+> Add your plots here, for example: `![Residual Plot](images/residual_plot.png)`
+
+## Key Insights
+- Smoking status is by far the strongest driver of insurance charges.
+- The effect of BMI is much larger for smokers than for non-smokers (interaction effect).
+- Adding interaction and non-linear features improved the model noticeably over the baseline.
+- Scaling did not change plain Linear Regression, but matters for Ridge/Lasso.
+
+*(Edit these lines to match your own results.)*
+
+## Tech Stack
+Python · NumPy · Pandas · Matplotlib · Seaborn · scikit-learn · Jupyter Notebook
+
+## How to Run
+```bash
+git clone https://github.com/<your-username>/insurance-charges-prediction.git
+cd insurance-charges-prediction
+pip install -r requirements.txt
+jupyter notebook notebooks/linear_regression_experiments.ipynb
+```
+
+## Project Structure
+```
+insurance-charges-prediction/
+├── data/
+│   └── insurance.csv
+├── notebooks/
+│   └── linear_regression_experiments.ipynb
+├── README.md
+├── requirements.txt
+└── .gitignore
+```
+
+## Future Work
+- Try Random Forest and XGBoost
+- Hyperparameter tuning with GridSearchCV
+- Log-transform the target variable
+- Deploy as a simple web app (Streamlit)
+
+## Author
+**Your Name**
+[LinkedIn](https://linkedin.com/in/suhailazhr) · [GitHub](https://github.com/suhailazhr)
